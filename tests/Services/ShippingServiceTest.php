@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\LogisticsFactory;
 use App\Services\ShippingService;
 
 class ShippingServiceTest extends TestCase
@@ -13,8 +14,9 @@ class ShippingServiceTest extends TestCase
         $expected = 110;
 
         /** act */
+        LogisticsFactory::bind($companyNo);
         $target = App::make(ShippingService::class);
-        $actual = $target->calculateFee($companyNo, $weight);
+        $actual = $target->calculateFee($weight);
 
         /** assert */
         $this->assertEquals($expected, $actual);
