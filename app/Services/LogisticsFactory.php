@@ -2,19 +2,19 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Collection;
+
 class LogisticsFactory
 {
     public static function create(int $companyNo = 0) : LogisticsInterface
     {
-        switch ($companyNo) {
-            case 0:
-                return new BlackCat();
-            case 1:
-                return new Hsinchu();
-            case 2:
-                return new PostOffice();
-            default:
-                return new BlackCat();
-        }
+        $lut = [
+            0 => BlackCat::class,
+            1 => Hsinchu::class,
+            2 => PostOffice::class
+        ];
+        $className = Collection::make($lut)->get($companyNo, BlackCat::class);
+
+        return new $className;
     }
 }
