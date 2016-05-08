@@ -205,4 +205,9 @@ return [
 
     ],
 
+    'logistics' => [
+        0 => App\Services\BlackCat::class,
+        1 => App\Services\Hsinchu::class,
+        2 => App\Services\PostOffice::class
+    ],
 ];
