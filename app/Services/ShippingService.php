@@ -5,13 +5,25 @@ namespace App\Services;
 class ShippingService
 {
     /**
-     * @param int $companyNo
+     * @var LogisticsInterface
+     */
+    private $logistics;
+
+    /**
+     * ShippingService constructor.
+     * @param LogisticsInterface $logistics
+     */
+    public function __construct(LogisticsInterface $logistics)
+    {
+        $this->logistics = $logistics;
+    }
+
+    /**
      * @param int $weight
      * @return int
      */
-    public function calculateFee(int $companyNo, int $weight) : int
+    public function calculateFee(int $weight) : int
     {
-        $logistics = LogisticsFactory::create($companyNo);
-        return $logistics->calculateFee($weight);
+        return $this->logistics->calculateFee($weight);
     }
 }
