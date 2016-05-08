@@ -2,26 +2,18 @@
 
 namespace App\Services;
 
-use Exception;
-
 class LogisticsFactory
 {
-    /**
-     * @param string $companyName
-     * @return LogisticsInterface
-     * @throws Exception
-     */
-    public static function create(string $companyName) : LogisticsInterface
+    public static function create(int $companyNo = 0) : LogisticsInterface
     {
-        switch ($companyName) {
-            case 'BlackCat':
-                return new BlackCat();
-            case 'Hsinchu':
-                return new Hsinchu();
-            case 'PostOffice':
-                return new PostOffice();
-            default:
-                return new BlackCat();
+        if ($companyNo == 0) {
+            return new BlackCat();
+        } elseif ($companyNo == 1) {
+            return new Hsinchu();
+        } elseif ($companyNo == 2) {
+            return new PostOffice();
+        } else {
+            return new BlackCat();
         }
     }
 }
