@@ -1,22 +1,20 @@
 <?php
 
-use App\Services\BlackCat;
-use App\Services\LogisticsInterface;
 use App\Services\ShippingService;
 
 class ShippingServiceTest extends TestCase
 {
     /** @test */
-    public function 黑貓整合測試()
+    public function 黑貓單元測試()
     {
         /** arrange */
-        $companyName = 'BlackCat';
-        $expected = 110;
+        $companyNo = 0;
         $weight = 1;
+        $expected = 110;
 
         /** act */
         $target = App::make(ShippingService::class);
-        $actual = $target->calculateFee($companyName, $weight);
+        $actual = $target->calculateFee($companyNo, $weight);
 
         /** assert */
         $this->assertEquals($expected, $actual);
