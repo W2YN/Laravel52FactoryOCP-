@@ -5,13 +5,13 @@ namespace App\Services;
 class ShippingService
 {
     /**
-     * @param $companyName
-     * @param $weight
+     * @param int $companyNo
+     * @param int $weight
      * @return int
      */
-    public function calculateFee($companyName, $weight)
+    public function calculateFee(int $companyNo, int $weight) : int
     {
-        $logistics = LogisticsFactory::create($companyName);
+        $logistics = LogisticsFactory::create($companyNo);
         return $logistics->calculateFee($weight);
     }
 }
